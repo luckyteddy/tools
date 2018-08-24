@@ -1,4 +1,4 @@
-Don't try to be vi compatible
+" Don't try to be vi compatible
 set nocompatible
 
 " close screen flash
@@ -79,8 +79,7 @@ set ttyfast
 
 " Status bar
 set laststatus=2
-set statusline=%F\ \ %r\ %{&fileformat}\ \ \ %l,%v\ %p%%\ \ \ [\ %L\ lines\
-]
+set statusline=%F\ \ %r\ %{&fileformat}\ \ \ %l,%v\ %p%%\ \ \ [\ %L\ lines\]
 
 " Last line
 set showmode
@@ -108,4 +107,47 @@ map <leader>l :set list!<CR> " Toggle tabs and EOL
 
 " Color scheme (terminal)
 set t_Co=256
-set backgro
+set background=dark
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
+" in ~/.vim/colors/ and uncomment:
+" colorscheme solarized
+" color settings for diff
+hi DiffAdd    ctermbg=235  ctermfg=108  guibg=#262626 guifg=#87af87 cterm=reverse gui=reverse
+hi DiffChange ctermbg=235  ctermfg=103  guibg=#262626 guifg=#8787af cterm=reverse gui=reverse
+hi DiffDelete ctermbg=235  ctermfg=131  guibg=#262626 guifg=#af5f5f cterm=reverse gui=reverse
+hi DiffText   ctermbg=235  ctermfg=208  guibg=#262626 guifg=#ff8700 cterm=reverse gui=reverse
+
+au BufNewFile,BufRead *.py,*.m
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+au BufNewFile,BufRead *.cpp,*.hpp
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+let g:pymode_python = 'python3'
+let g:pymode_options_colorcolumn = 0
+
+" NERDtree
+let NERDTreeWinPos='right'
+let NERDTreeWinSize=30
+map <F2> :NERDTreeToggle<CR>
+
+" Tlist
+nmap <F3> :Tlist<CR>
+
+:autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>
+
+
